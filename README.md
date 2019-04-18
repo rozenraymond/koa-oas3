@@ -36,7 +36,9 @@ app.listen(8080);
 * `file` - The absolute path to your Openapi file
 * `spec` - javascript object defining the api, either this or `file` must be given.
 * `endpoint`(default: /openapi.json) - The endpoint for serving Openapi JSON
+* `hideEndpoint` - (default: false) - Option to hide endpoint which server the Openapi JSON
 * `uiEndpoint`:(default: /openapi.html) - The endpoint for serving Openapi UI
+* `hideUIEndpoint` - (default: false) - Option to hide endpoint which server the Openapi UI
 * `validateResponse`:(default: false) - Validate response against Openapi schemas
 * `validatePaths`:(default ['/']) - Only endpoints starting with the values specified here will be validated
 * `swaggerUiBundleBasePath`: (default use swagger-ui-dist from [unpkg](https://unpkg.com/)) - [swaggerUiAssetPath](https://www.npmjs.com/package/swagger-ui-dist) needed for loading the swagger-ui

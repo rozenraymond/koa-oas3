@@ -35,12 +35,12 @@ export function oas(cfg: Partial<Config>): koa.Middleware {
 
   const mw: koa.Middleware = async (ctx: koa.Context & { params?: any }, next: () => Promise<any>): Promise<void> => {
 
-    if (ctx.path === config.endpoint) {
+    if (ctx.path === config.endpoint && !config.hideEndpoint) {
       ctx.body = doc;
       return;
     }
 
-    if (ctx.path === config.uiEndpoint) {
+    if (ctx.path === config.uiEndpoint && !config.hideUIEndpoint) {
       ctx.body = openapiUI({
         title: doc.info ? doc.info.title : 'openapi UI',
         url: config.endpoint,

@@ -11,10 +11,20 @@ export interface Config {
    */
   spec?: object,
   /**
+   * Option to hide the endpoint that serves Openapi Doc in JSON
+   * default: false
+   */
+  hideEndpoint?: boolean; 
+  /**
    * Endpoint that serves raw Openapi Document in JSON
    * default: /openapi.json
    */
   endpoint: string;
+  /**
+   * Option to hide the endpoint that serves Opeanapi UI 
+   * default: false
+   */
+  hideUIEndpoint?: boolean; 
   /**
    * Endpoint that serves Openapi UI
    * default: /openapi.html
@@ -62,5 +72,7 @@ export function validateConfig(cfg: Partial<Config>): Config {
     validatePaths: cfg.validatePaths || ['/'],
     swaggerUiBundleBasePath: cfg.swaggerUiBundleBasePath || '//unpkg.com/swagger-ui-dist@3/',
     errorHandler: cfg.errorHandler || defaultErrorHandler,
+    hideEndpoint: cfg.hideEndpoint || false,
+    hideUIEndpoint: cfg.hideUIEndpoint || false,
   };
 }

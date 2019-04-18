@@ -115,4 +115,34 @@ describe('Koa Oas3', () => {
     await expect(mw(ctx, next)).rejects.toThrow();
     expect(errorHandler).toBeCalled();
   })
+
+  test('Should hide openapi JSON endpoint if hideEndpoint is true', async() => {
+    const ctx: any = {
+      path: '/openapi'
+    }
+    const next = jest.fn();
+    const mw = oas({
+      file: path.resolve('./__tests__/fixtures/pet-store.json'),
+      hideEndpoint: true,
+      validatePaths: ['/pets']
+    });
+    await mw(ctx, next);
+    expect(next.mock.calls.length).toBe(1);
+    expect(ctx.body).toBeFalsy();
+  });
+
+  test('Should hide openapi UI endpoint if hideUIEndpoint config is true', async() => {
+    const ctx: any = {
+      path: '/openapi.html'
+    }
+    const next = jest.fn();
+    const mw = oas({
+      file: path.resolve('./__tests__/fixtures/pet-store.json'),
+      hideUIEndpoint: true,
+      validatePaths: ['/pets']
+    });
+    await mw(ctx, next);
+    expect(next.mock.calls.length).toBe(1);
+    expect(ctx.body).toBeFalsy();
+  });
 })
